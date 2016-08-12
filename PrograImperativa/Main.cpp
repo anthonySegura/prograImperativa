@@ -1,7 +1,8 @@
 #include <GL\glut.h>
+#include "Joystick.h"
 
-GLfloat xRotated, yRotated, zRotated;
-GLdouble radius = 1;
+
+GLdouble radius = 0.5;
 
 
 void redisplayFunc(void)
@@ -66,7 +67,7 @@ int main(int argc, char **argv)
 	//double buffering used to avoid flickering problem in animation
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	// window size
-	glutInitWindowSize(400, 350);
+	glutInitWindowSize(1280, 720);
 	// create the window 
 	glutCreateWindow("Sphere Rotating Animation");
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -75,6 +76,7 @@ int main(int argc, char **argv)
 	yRotated = 40;
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 	//Assign  the function used in events
+	glutJoystickFunc(joystick,25 );
 	glutDisplayFunc(redisplayFunc);
 	glutReshapeFunc(reshapeFunc);
 	glutIdleFunc(idleFunc);

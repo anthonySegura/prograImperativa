@@ -1,5 +1,6 @@
-
-#include <GLFW\glfw3.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <GL\glut.h>
 
 int UNO = 1;
 int DOS = 2;
@@ -9,45 +10,19 @@ int ARRIBA = 5;
 int ABAJO = 6;
 int IZQUIERDA = 7;
 int DERECHA = 8;
+GLfloat xRotated = 0, yRotated = 0, zRotated = 0;
 
-/*
-	Detecta si el Joystick esta conectado
-	Retorna 1 si esta conectado
-*/
-int joystickPresent() {
-	return glfwJoystickPresent(GLFW_JOYSTICK_1);
-}
-
-/*
-	Obtiene el valor del boton presionado
-*/
-void getButtonPressed(int * button) {
-	int buttonCount;
-	//Se obtiene un arreglo con los botones disponibles
-	const unsigned char * buttons = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount);
-	if (GLFW_PRESS == buttons[0]) {
-		*button = UNO;
+void joystick(unsigned int buttonmask, int x, int y, int z) {
+	if (buttonmask & 0x1) {
+		printf("Button 1 pressed\n");
+		xRotated += 1;
 	}
-	else if (GLFW_PRESS == buttons[1]) {
-		*button = DOS;
+	else if (buttonmask & 0x4) {
+		printf("Button 2 pressed\n");
+		yRotated += 1;
 	}
-	else if (GLFW_PRESS == buttons[2]) {
-		*button = TRES;
-	}
-	else if (GLFW_PRESS == buttons[3]) {
-		*button = CUATRO;
-	}
-	else if (GLFW_PRESS == buttons[12]) {
-		*button = ARRIBA;
-	}
-	else if (GLFW_PRESS == buttons[13]) {
-		*button = DERECHA;
-	}
-	else if (GLFW_PRESS == buttons[14]) {
-		*button = ABAJO;
-	}
-	else if (GLFW_PRESS == buttons[15]) {
-		*button = IZQUIERDA;
+	else if (buttonmask & 0x2) {
+		zRotated += 1;
 	}
 
 }

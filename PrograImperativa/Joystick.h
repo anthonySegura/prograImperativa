@@ -1,5 +1,7 @@
 #ifndef JOYSTICK_H_INCLUDED
 #define JOYSTICK_H_INCLUDED
+#include <GL\glut.h>
+
 extern int UNO;
 extern int DOS;
 extern int TRES;
@@ -8,9 +10,9 @@ extern int ARRIBA;
 extern int ABAJO;
 extern int IZQUIERDA;
 extern int DERECHA;
+extern GLfloat xRotated, yRotated, zRotated;
 
-void getButtonPressed(int * button);
-int joystickPresent();
+void joystick(unsigned int buttonmask, int x, int y, int z);
 
 
 #endif // JOYSTICK_H_INCLUDED
