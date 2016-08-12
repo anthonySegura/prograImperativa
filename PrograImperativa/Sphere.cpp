@@ -5,7 +5,7 @@ GLdouble radius = 0.5;
 
 void redisplayFunc(void)
 {
-	//glMatrixMode(GL_MODELVIEW);
+	glMatrixMode(GL_MODELVIEW);
 	// clear the drawing buffer.
 	glClear(GL_COLOR_BUFFER_BIT);
 	// clear the identity matrix.
@@ -13,8 +13,8 @@ void redisplayFunc(void)
 	// traslate the draw by z = -4.0
 	// Note this when you decrease z like -8.0 the drawing will looks far , or smaller.
 	glTranslatef(axisX, axisY, axisZ);
-	// Red color used to draw.
-	glColor3f(0.8, 0.2, 0.1);
+	// Green color used to draw.
+	glColor3f(0.0, 1.0, 0.0);
 	// changing in transformation matrix.
 	// rotation about X axis
 	glRotatef(xRotated, 1.0, 0.0, 0.0);
@@ -29,8 +29,7 @@ void redisplayFunc(void)
 	// Flush buffers to screen
 
 	glFlush();
-	// sawp buffers called because we are using double buffering 
-	// glutSwapBuffers();
+	
 }
 
 void reshapeFunc(int x, int y)
@@ -51,7 +50,6 @@ void reshapeFunc(int x, int y)
 
 void idleFunc(void)
 {
-	//yRotated += 0.01;
 	redisplayFunc();
 }
 
@@ -63,12 +61,8 @@ void initSphere(int argc, char **argv) {
 	// window size
 	glutInitWindowSize(1280, 720);
 	// create the window 
-	glutCreateWindow("Sphere Rotating Animation");
-
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	//xRotated = yRotated = zRotated = 30.0;
-	//xRotated = 33;
-	//yRotated = 40;
+	WINDOW_ID = glutCreateWindow("Animacion Esfera");
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);	
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 	//Assign  the function used in events
 	glutJoystickFunc(joystick, 25);

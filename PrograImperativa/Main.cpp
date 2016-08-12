@@ -1,4 +1,4 @@
-#include <GL\glut.h>
+
 #include "Sphere.h"
 
 
