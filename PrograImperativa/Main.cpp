@@ -1,21 +1,19 @@
 #include <GL\glut.h>
 #include "Joystick.h"
-
+#include <stdio.h>
 
 GLdouble radius = 0.5;
 
-
 void redisplayFunc(void)
 {
-
-	glMatrixMode(GL_MODELVIEW);
+	//glMatrixMode(GL_MODELVIEW);
 	// clear the drawing buffer.
 	glClear(GL_COLOR_BUFFER_BIT);
 	// clear the identity matrix.
 	glLoadIdentity();
 	// traslate the draw by z = -4.0
 	// Note this when you decrease z like -8.0 the drawing will looks far , or smaller.
-	glTranslatef(0.0, 0.0, -4.5);
+	glTranslatef(axisX,axisY, axisZ);
 	// Red color used to draw.
 	glColor3f(0.8, 0.2, 0.1);
 	// changing in transformation matrix.
@@ -53,9 +51,7 @@ void reshapeFunc(int x, int y)
 
 void idleFunc(void)
 {
-
-	yRotated += 0.01;
-
+	//yRotated += 0.01;
 	redisplayFunc();
 }
 
@@ -71,12 +67,12 @@ int main(int argc, char **argv)
 	// create the window 
 	glutCreateWindow("Sphere Rotating Animation");
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	xRotated = yRotated = zRotated = 30.0;
-	xRotated = 33;
-	yRotated = 40;
+	//xRotated = yRotated = zRotated = 30.0;
+	//xRotated = 33;
+	//yRotated = 40;
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 	//Assign  the function used in events
-	glutJoystickFunc(joystick,25 );
+	glutJoystickFunc(joystick ,25);
 	glutDisplayFunc(redisplayFunc);
 	glutReshapeFunc(reshapeFunc);
 	glutIdleFunc(idleFunc);

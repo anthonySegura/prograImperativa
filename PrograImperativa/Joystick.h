@@ -10,7 +10,10 @@ extern int ARRIBA;
 extern int ABAJO;
 extern int IZQUIERDA;
 extern int DERECHA;
+extern double axisX, axisY, axisZ;
 extern GLfloat xRotated, yRotated, zRotated;
+
+
 
 void joystick(unsigned int buttonmask, int x, int y, int z);
 
