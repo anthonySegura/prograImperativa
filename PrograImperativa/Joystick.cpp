@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <GL\glut.h>
+#include "Archivos.h"
 #include <math.h>
 
 //Codigos de los botones del Joystick
@@ -99,8 +100,14 @@ void joystick(unsigned int buttonmask, int x, int y, int z) {
 		mover(0.000000, 0.000000);
 	}
 	
+	else if (buttonmask & GUARDAR) {
+		guardarCoordenadas(axisX, axisY, axisZ, (float)xRotated, (float)yRotated, (float)zRotated);
+		printf("Coordenadas guardadas\n");
+	}
+	
 	else if (buttonmask & SALIR) {
-		glutDestroyWindow(WINDOW_ID);
+		verCoordenadas();
+		//glutDestroyWindow(WINDOW_ID);
 	}
 
 	printf("Eje x : %f Eje y : %f\n", axisX, axisY);

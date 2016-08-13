@@ -1,7 +1,10 @@
 #include <GL\glut.h>
 #include "Joystick.h"
+#include "Archivos.h"
 
 GLdouble radius = 0.5;
+float coordenadas[50][6];
+
 
 void redisplayFunc(void)
 {
@@ -54,6 +57,11 @@ void idleFunc(void)
 }
 
 void initSphere(int argc, char **argv) {
+
+	cargarCoordenadas(coordenadas);
+	axisX = coordenadas[0][0];
+	axisY = coordenadas[0][1];
+
 	//Initialize GLUT
 	glutInit(&argc, argv);
 	//double buffering used to avoid flickering problem in animation
