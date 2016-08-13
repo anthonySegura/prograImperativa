@@ -23,7 +23,7 @@ void guardarCoordenadas(float axisX, float axisY, float axisZ, float esferaX, fl
 	registro->esferaY = esferaY;
 	registro->esferaZ = esferaZ;
 
-	registroCoordenadas = fopen("Coordenadas.dat", "w+");
+	registroCoordenadas = fopen("Coordenadas.dat", "a+");
 	fwrite(registro , sizeof(struct coordenada) , 1 , registroCoordenadas);
 	fclose(registroCoordenadas);
 }
@@ -42,14 +42,26 @@ void verCoordenadas() {
 	getchar();
 }
 
-void cargarCoordenadas(float arreglo[][6]) {
+
+void borrarCoordenadas() {
+	if (remove("Coordenadas.dat") != 0) {
+		printf("No se pudo borrar los datos\n");
+	}
+	else {
+		printf("Datos Eliminados\n");
+	}
+}
+
+//Carga todas las coordenadas almacenadas en el archivo en un arreglo
+//Retorna el numero de coordenadas guardadas en el archivo
+int cargarCoordenadas(float arreglo[][6]) {
 
 	struct coordenada * buffer;
 	buffer = (struct coordenada *) malloc(sizeof(struct coordenada));
 	registroCoordenadas = fopen("Coordenadas.dat", "r");
 	if (!registroCoordenadas) {
-		printf("Error al leer el archivo\n");
-		return;
+		printf("Aun no se han guardado coordenadas\n");
+		return -1;
 	}
 	int i = 0;
 	while (fread((struct coordenada *)buffer, sizeof(struct coordenada), 1, registroCoordenadas)) {
@@ -62,4 +74,5 @@ void cargarCoordenadas(float arreglo[][6]) {
 		i++;
 	}
 	fclose(registroCoordenadas);
+	return i;
 }

@@ -24,6 +24,7 @@ float bordeSup = -1.100000;
 float bordeInf =  1.100000;
 
 GLdouble radio = 0.5;
+float puntos[50][6];
 
 bool compare_float(float f1, float f2)
 {
@@ -35,22 +36,22 @@ void mover(float x, float y) {
 
 	while (!(compare_float(axisX , x)) || !(compare_float(axisY , y))) {
 		if (axisX < x) {
-			yRotated -= 0.2;
+			yRotated -= 0.1;
 			axisX += 0.001;
 		}
 		else {
-			yRotated += 0.2;
+			yRotated += 0.1;
 			axisX -= 0.001;
 		}
 		if (axisY < y) {
-			xRotated += 0.2;
+			xRotated += 0.1;
 			axisY += 0.001;
 		}
 		else {
-			xRotated -= 0.2;
+			xRotated -= 0.1;
 			axisY -= 0.001;
 		}
-		printf("Eje x : %f Eje y %f\n", axisX, axisY);
+		//printf("Eje x : %f Eje y %f\n", axisX, axisY);
 		glMatrixMode(GL_MODELVIEW);
 		// clear the drawing buffer.
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -78,6 +79,18 @@ void mover(float x, float y) {
 	}
 }
 
+void seguirCoordenadas(float coordenadas[][6] , int n) {
+	float x = 0, y = 0, x2 = 0 , y2 = 0;
+	axisX = coordenadas[0][0];
+	axisY = coordenadas[0][1];
+	for (int i = 0; i < n; i++) {
+		x = coordenadas[i][0];
+		y = coordenadas[i][1];
+		mover(x, y);
+		printf("Coordenada X : %f Coordenada Y %f Numero de puntos : %d\n" , x , y , n);
+	}
+}
+
 void joystick(unsigned int buttonmask, int x, int y, int z) {
 
 	if (buttonmask & UNO) {
@@ -97,19 +110,23 @@ void joystick(unsigned int buttonmask, int x, int y, int z) {
 		if(axisY < bordeInf)axisY += 0.01;
 	}
 	else if (buttonmask & ANIMACION) {
-		mover(0.000000, 0.000000);
+		int n = cargarCoordenadas(puntos);
+		if (n > 0) seguirCoordenadas(puntos, n);
+		else
+			printf("No hay coordenadas guardadas\n");
 	}
 	
 	else if (buttonmask & GUARDAR) {
 		guardarCoordenadas(axisX, axisY, axisZ, (float)xRotated, (float)yRotated, (float)zRotated);
 		printf("Coordenadas guardadas\n");
 	}
+
+	else if (buttonmask & BORRAR_DATOS) {
+		borrarCoordenadas();
+	}
 	
 	else if (buttonmask & SALIR) {
-		verCoordenadas();
-		//glutDestroyWindow(WINDOW_ID);
+		glutDestroyWindow(WINDOW_ID);
 	}
 
-	printf("Eje x : %f Eje y : %f\n", axisX, axisY);
-	
 }

@@ -1,10 +1,10 @@
 #include <GL\glut.h>
 #include "Joystick.h"
 #include "Archivos.h"
+#include <stdio.h>
 
 GLdouble radius = 0.5;
 float coordenadas[50][6];
-
 
 void redisplayFunc(void)
 {
@@ -61,7 +61,9 @@ void initSphere(int argc, char **argv) {
 	cargarCoordenadas(coordenadas);
 	axisX = coordenadas[0][0];
 	axisY = coordenadas[0][1];
-
+	xRotated = coordenadas[0][3];
+	yRotated = coordenadas[0][4];
+	
 	//Initialize GLUT
 	glutInit(&argc, argv);
 	//double buffering used to avoid flickering problem in animation
@@ -69,7 +71,7 @@ void initSphere(int argc, char **argv) {
 	// window size
 	glutInitWindowSize(1280, 720);
 	// create the window 
-	WINDOW_ID = glutCreateWindow("Animacion Esfera");
+	WINDOW_ID = glutCreateWindow("Proyecto Programacion Imperativa | Anthony Segura Chaves - Jose Miguel Murillo");
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);	
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 	//Assign  the function used in events

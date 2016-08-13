@@ -2,6 +2,7 @@
 #define ARCHIVOS_H_INCLUDED
 
 void guardarCoordenadas(float axisX , float axisY, float axisZ , float esferaX , float esferaY , float esferaZ);
-void cargarCoordenadas(float arreglo[][6]);
+int cargarCoordenadas(float arreglo[][6]);
 void verCoordenadas();
+void borrarCoordenadas();
 #endif // ARCHIVOS_H_INCLUDED
