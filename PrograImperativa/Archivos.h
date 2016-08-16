@@ -5,4 +5,5 @@ void guardarCoordenadas(float axisX , float axisY, float axisZ , float esferaX ,
 int cargarCoordenadas(float arreglo[][6]);
 void verCoordenadas();
 void borrarCoordenadas();
+
 #endif // ARCHIVOS_H_INCLUDED

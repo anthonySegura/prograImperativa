@@ -7,6 +7,6 @@ extern GLdouble radius;
 void redisplayFunc(void);
 void reshapeFunc(int x, int y);
 void idleFunc(void);
-void initSphere(int argc , char **argv);
+void initGraphics(int argc , char **argv);
 
 #endif // SPHERE_H_INCLUDED

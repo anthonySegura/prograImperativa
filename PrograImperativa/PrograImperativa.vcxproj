@@ -113,7 +113,7 @@
     <ClCompile Include="Archivos.cpp" />
     <ClCompile Include="Joystick.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="Graphics.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -123,7 +123,7 @@
   <ItemGroup>
     <ClInclude Include="Archivos.h" />
     <ClInclude Include="Joystick.h" />
-    <ClInclude Include="Sphere.h" />
+    <ClInclude Include="Graphics.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
